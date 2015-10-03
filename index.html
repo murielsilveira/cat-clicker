@@ -3,12 +3,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Cat Clicker</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            width: 640px;
+            position: absolute;
+            left: 50%;
+            margin-left: -320px;
+        }
+        #cat {
+            width: 640px;
+            height: 426px;
+            cursor: pointer;
+        }
+        #counter {
+            font-size: 8em;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-	<img src="img/cat.jpg" alt="Click me <3">
+    <div id="container">
+    	<img id="cat" src="img/cat.jpg" alt="Click me <3" title="Click me <3">
+        <div id="counter"></div>
+    </div>
 
 	<script>
+        var cat = document.getElementById('cat'),
+            counter = document.getElementById('counter'),
+            clicks = 0
 
+        counter.innerHTML = clicks
+        cat.addEventListener('click', function() {
+            counter.innerHTML = ++clicks
+        })
 	</script>
 </body>
 </html>
