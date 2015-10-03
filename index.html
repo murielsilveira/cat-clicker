@@ -14,13 +14,13 @@
             left: 50%;
             margin-left: -320px;
         }
-        #cat {
+        .cat {
             width: 640px;
             height: 426px;
             cursor: pointer;
         }
         .counter {
-            font-size: 8em;
+            font-size: 4em;
             font-weight: bold;
             text-align: center;
         }
@@ -32,20 +32,31 @@
     </style>
 </head>
 <body>
-    <div id="container">
-    	<div class="name">Smally Cat</div>
-        <img id="cat" src="img/cat.jpg" alt="Click me <3" title="Click me <3">
-        <div id="js-counter" class="counter"></div>
-    </div>
+    <div id="container"></div>
 
 	<script>
-        var cat = document.getElementById('cat'),
-            counter = document.getElementById('js-counter'),
-            clicks = 0
+        var cats = [
+                {name: 'Smally Cat', img: 'img/smally-cat.jpg', counter: 0},
+                {name: 'Stair Cat', img: 'img/stair-cat.jpg', counter: 0},
+                {name: 'Sleepy Cat', img: 'img/sleepy-cat.jpg', counter: 0},
+            ],
+            container = document.getElementById('container'),
+            catsHtml = ''
 
-        counter.innerHTML = clicks
-        cat.addEventListener('click', function() {
-            counter.innerHTML = ++clicks
+        cats.forEach(function(cat, index) {
+            catsHtml += '<div>' +
+                '<span class="name">' + cat.name + ' - </span>' +
+                '<span id="counter-' + index + '" class="counter">' + cat.counter + '</span>' +
+                '<img id="cat-' + index + '" class="cat" src="' + cat.img + '" alt="Click me <3">' +
+                '</div>'
+        })
+        container.innerHTML = catsHtml
+        catsHtml = ''
+
+        cats.forEach(function(cat, index) {
+            document.getElementById('cat-' + index).addEventListener('click', function() {
+                document.getElementById('counter-' + index).innerHTML = ++cat.counter
+            })
         })
 	</script>
 </body>
