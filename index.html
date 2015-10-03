@@ -19,8 +19,13 @@
             height: 426px;
             cursor: pointer;
         }
-        #counter {
+        .counter {
             font-size: 8em;
+            font-weight: bold;
+            text-align: center;
+        }
+        .name {
+            font-size: 4em;
             font-weight: bold;
             text-align: center;
         }
@@ -28,13 +33,14 @@
 </head>
 <body>
     <div id="container">
-    	<img id="cat" src="img/cat.jpg" alt="Click me <3" title="Click me <3">
-        <div id="counter"></div>
+    	<div class="name">Smally Cat</div>
+        <img id="cat" src="img/cat.jpg" alt="Click me <3" title="Click me <3">
+        <div id="js-counter" class="counter"></div>
     </div>
 
 	<script>
         var cat = document.getElementById('cat'),
-            counter = document.getElementById('counter'),
+            counter = document.getElementById('js-counter'),
             clicks = 0
 
         counter.innerHTML = clicks
