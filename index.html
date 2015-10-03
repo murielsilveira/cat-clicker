@@ -8,23 +8,42 @@
             margin: 0;
             padding: 0;
         }
-        #container {
-            width: 640px;
+        #list {
+            width: 160px;
+            min-height: 200px;
             position: absolute;
             left: 50%;
-            margin-left: -320px;
+            margin-left: -400px;
+            margin-top: 50px;
         }
-        .cat {
+        #list-title {
+            font-size: 1.5em;
+        }
+        #list-container {
+            font-size: 1.1em;
+        }
+        .list-item {
+            cursor: pointer;
+        }
+        #cat-container {
+            width: 640px;
+            float: left;
+            position: absolute;
+            left: 50%;
+            margin-left: -240px;
+            margin-top: 50px;
+        }
+        #cat-img {
             width: 640px;
             height: 426px;
             cursor: pointer;
         }
-        .counter {
+        #cat-counter {
             font-size: 4em;
             font-weight: bold;
             text-align: center;
         }
-        .name {
+        #cat-name {
             font-size: 4em;
             font-weight: bold;
             text-align: center;
@@ -32,32 +51,53 @@
     </style>
 </head>
 <body>
-    <div id="container"></div>
+    <div id="list">
+        <div id="list-title">Choose a cat:</div>
+        <ul id="list-container"></ul>
+    </div>
+    <div id="cat-container"></div>
 
 	<script>
+        'use strict'
+
         var cats = [
                 {name: 'Smally Cat', img: 'img/smally-cat.jpg', counter: 0},
                 {name: 'Stair Cat', img: 'img/stair-cat.jpg', counter: 0},
                 {name: 'Sleepy Cat', img: 'img/sleepy-cat.jpg', counter: 0},
             ],
-            container = document.getElementById('container'),
-            catsHtml = ''
+            listContainer = document.getElementById('list-container'),
+            catContainer = document.getElementById('cat-container')
 
         cats.forEach(function(cat, index) {
-            catsHtml += '<div>' +
-                '<span class="name">' + cat.name + ' - </span>' +
-                '<span id="counter-' + index + '" class="counter">' + cat.counter + '</span>' +
-                '<img id="cat-' + index + '" class="cat" src="' + cat.img + '" alt="Click me <3">' +
-                '</div>'
+            var item = document.createElement('li')
+            item.innerHTML = cat.name
+            item.classList.add('list-item')
+            item.setAttribute('data-index', index)
+            item.addEventListener('click', showCat)
+            listContainer.appendChild(item)
         })
-        container.innerHTML = catsHtml
-        catsHtml = ''
 
-        cats.forEach(function(cat, index) {
-            document.getElementById('cat-' + index).addEventListener('click', function() {
-                document.getElementById('counter-' + index).innerHTML = ++cat.counter
+        function showCat (event) {
+            var index = parseInt(event.target.getAttribute('data-index')),
+                cat = cats[index],
+                catCounter,
+                catImg,
+                catsHtml =
+                    '<div>' +
+                    '   <span id="cat-name">' + cat.name + ' - </span>' +
+                    '   <span id="cat-counter">' + cat.counter + '</span>' +
+                    '   <img id="cat-img" src="' + cat.img + '" alt="Click me <3">' +
+                    '</div>'
+
+            catContainer.innerHTML = catsHtml
+
+            catCounter = document.getElementById('cat-counter')
+            catImg = document.getElementById('cat-img')
+
+            catImg.addEventListener('click', function() {
+                catCounter.innerHTML = ++cat.counter
             })
-        })
+        }
 	</script>
 </body>
 </html>
