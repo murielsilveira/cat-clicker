@@ -8,6 +8,7 @@
                 {name: 'Smally Cat', img: 'img/smally-cat.jpg', counter: 0},
                 {name: 'Stair Cat', img: 'img/stair-cat.jpg', counter: 0},
                 {name: 'Sleepy Cat', img: 'img/sleepy-cat.jpg', counter: 0},
+                {name: 'Doido Cat', img: 'img/doido-cat.jpg', counter: 0},
             ]
         },
         getAllCats: function() {

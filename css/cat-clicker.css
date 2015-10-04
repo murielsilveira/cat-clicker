@@ -31,7 +31,6 @@ html, body {
 }
 #cat-img {
     width: 640px;
-    height: 426px;
     cursor: pointer;
 }
 #cat-counter {
