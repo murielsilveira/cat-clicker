@@ -1,15 +1,23 @@
 html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4CBBBF;
+}
+
+#body-container {
+    width: 900px;
+    left: 50%;
+    margin-left: -450px;
+    margin-top: 50px;
+    position: absolute;
 }
 
 #list {
     width: 160px;
-    min-height: 200px;
-    position: absolute;
-    left: 50%;
-    margin-left: -400px;
-    margin-top: 50px;
+    min-height: 1px;
+    float: left;
 }
 #list-title {
     font-size: 1.5em;
@@ -20,14 +28,14 @@ html, body {
 .list-item {
     cursor: pointer;
 }
+.list-item:hover {
+    color: #FFF;
+}
 
 #cat-container {
     width: 640px;
     float: left;
-    position: absolute;
-    left: 50%;
-    margin-left: -240px;
-    margin-top: 50px;
+    text-align: center;
 }
 #cat-img {
     width: 640px;

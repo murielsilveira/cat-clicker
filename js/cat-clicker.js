@@ -9,7 +9,7 @@
                 {name: 'Smally Cat', img: 'img/smally-cat.jpg', counter: 0},
                 {name: 'Stair Cat', img: 'img/stair-cat.jpg', counter: 0},
                 {name: 'Sleepy Cat', img: 'img/sleepy-cat.jpg', counter: 0},
-                {name: 'Doido Cat', img: 'img/doido-cat.jpg', counter: 0},
+                {name: 'Zuero Cat', img: 'img/zuero-cat.jpg', counter: 0},
             ].sort(this._catOrderCompare)
         },
         getAllCats: function() {
@@ -81,11 +81,9 @@
 
             if (cat) {
                 catsHtml =
-                    '<div>' +
-                    '   <span id="cat-name">' + cat.name + ' - </span>' +
-                    '   <span id="cat-counter">' + cat.counter + '</span>' +
-                    '   <img id="cat-img" src="' + cat.img + '" alt="Click me <3">' +
-                    '</div>'
+                    '<span id="cat-name">' + cat.name + ' - </span>' +
+                    '<span id="cat-counter">' + cat.counter + '</span>' +
+                    '<img id="cat-img" src="' + cat.img + '" alt="Click me <3">'
 
                 this.catContainer.innerHTML = catsHtml
 
