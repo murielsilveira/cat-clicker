@@ -51,3 +51,16 @@ html, body {
     font-weight: bold;
     text-align: center;
 }
+
+#cat-admin {
+    float: left;
+    margin-left: 160px;
+    margin-top: 10px;
+}
+#form-admin > label {
+    display: block;
+    margin-top: 10px;
+}
+.admin-actions {
+    margin-top: 10px;
+}
