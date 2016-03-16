@@ -49,9 +49,15 @@
             catAdminView.closeAdmin()
             catView.render()
         },
+        openAdmin: function() {
+            catAdminView.openAdmin(this.getCurrentCat())
+        },
+        closeAdmin: function() {
+            catAdminView.closeAdmin()
+        },
         saveCat: function(name, imgUrl, numClicks) {
             model.saveCat(this.currentCatIndex, name, imgUrl, numClicks)
-            catAdminView.closeAdmin()
+            this.closeAdmin()
             catListView.render()
             catView.render()
         }
@@ -122,12 +128,13 @@
             this.adminContainer.innerHTML = '<button id="btn-admin">Admin</button>'
 
             document.getElementById('btn-admin')
-                .addEventListener('click', this.openAdmin.bind(this))
+                .addEventListener('click', function() {
+                    octopus.openAdmin()
+                })
         },
-        openAdmin: function() {
+        openAdmin: function(cat) {
             if (this.isOpen) return
             
-            var cat = octopus.getCurrentCat()
             var form = document.createElement('form')
             form.id = 'form-admin'
             form.innerHTML = '<label for="name">Name</label>' +
@@ -137,8 +144,8 @@
                              '<label for="clicks">#Clicks</label>' +
                              '<input name="clicks" value="' + cat.counter + '"/>' +
                              '<div class="admin-actions">' +
-                             '<button id="btn-cancel" type="button">Cancel</button>' +
-                             '<button id="btn-save" type="button">Save</button>' +
+                             '  <button id="btn-cancel" type="button">Cancel</button>' +
+                             '  <button id="btn-save" type="button">Save</button>' +
                              '</div>'
             this.adminContainer.appendChild(form)
             this.isOpen = true
@@ -146,9 +153,16 @@
             document.getElementById('btn-admin').style.display = 'none'
 
             document.getElementById('btn-cancel')
-                .addEventListener('click', this.closeAdmin.bind(this))
+                .addEventListener('click', function() {
+                    octopus.closeAdmin()
+                })
             document.getElementById('btn-save')
-                .addEventListener('click', this.saveCat.bind(this))
+                .addEventListener('click', function() {
+                    var elements = document.getElementById('form-admin').elements
+                    octopus.saveCat(elements.namedItem('name').value,
+                                    elements.namedItem('url').value,
+                                    elements.namedItem('clicks').value)
+                })
         },
         closeAdmin: function() {
             if (!this.isOpen) return
@@ -156,14 +170,6 @@
             this.isOpen = false
             document.getElementById('btn-admin').style.display = 'block'
             document.getElementById('form-admin').remove()
-        },
-        saveCat: function() {
-            if (!this.isOpen) return
-
-            var elements = document.getElementById('form-admin').elements
-            octopus.saveCat(elements.namedItem('name').value,
-                            elements.namedItem('url').value,
-                            elements.namedItem('clicks').value)
         }
     }
 
